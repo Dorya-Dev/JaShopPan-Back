@@ -15,16 +15,16 @@ const product ={
         })
     },
 
-    /*detail: (req, res) => {
-        
+    detail: (req, res) => {
+        res.send("ok")
     },
 
     sidebar: (req, res) => {
-        
+        res.send("ok")
     },
     search: (req, res) => {
-       
-    }*/
+        res.send("ok")
+    }
 }
 
 module.exports = product;
