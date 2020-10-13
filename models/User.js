@@ -15,7 +15,7 @@ const contactSchema = new mongoose.Schema({
     birthday: String,
     password: String,
     address: String,
-    zipcode: Number,
+    postcode: Number,
     city: String,
     phone: Number
     
