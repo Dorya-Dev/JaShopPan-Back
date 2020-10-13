@@ -1,16 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const user = require("../controllers/user");
-const { route } = require('./account');
+const home = require("../controllers/product");
 
 /* GET home page. */
 
-/*router.get('/home', user.title);
+router.get('/home', home.content);
 
-router.get('/sidebar', user.title);
+router.get('/sidebar', home.sidebar);
 
-router.get('/search', controllers.title);*/
-
+router.get('/search', home.search);
   
 
 module.exports = router;
