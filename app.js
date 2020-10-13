@@ -11,6 +11,7 @@ const app = express();
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://groupbocal:bocal2020@projetbackend.hyr4w.mongodb.net/jashoppan?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connection.once("open", () =>{console.log("DataBase connection successful")})
 
 app.use(logger('dev'));
 app.use(express.json());
