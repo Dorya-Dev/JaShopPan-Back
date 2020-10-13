@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const user = require("../controllers/user");
+const { route } = require('./account');
 
 /* GET home page. */
 
@@ -9,6 +10,7 @@ const user = require("../controllers/user");
 router.get('/sidebar', user.title);
 
 router.get('/search', controllers.title);*/
+
   
 
 module.exports = router;
