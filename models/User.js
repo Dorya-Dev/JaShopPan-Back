@@ -6,23 +6,20 @@
 const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({
-    nom: String,
-    prenom: String,
+    firstname: String,
+    lastname: String,
     email: {
         type: String,
         unique: true
     },
-    age : {
-        type: Number
-    },
-    status: {
-        type: Boolean
-    },
-    notes: {
-        type: String
-
-    }
-
+    birthday: String,
+    password: String,
+    address: String,
+    zipcode: Number,
+    city: String,
+    phone: Number
+    
+    
 });
 
 module.exports = mongoose.model('Contact', contactSchema);
