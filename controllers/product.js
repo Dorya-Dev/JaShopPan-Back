@@ -43,7 +43,7 @@ const product = {
   },
 
   sidebar: (req, res) => {
-    Product.find({}, "title imagexs", (err, products) => {
+    Product.find({}, "category title imagexs", (err, products) => {
       if (err) {
         res.status(500).json({
           message: "not good",
