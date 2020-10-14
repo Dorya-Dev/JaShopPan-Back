@@ -13,6 +13,23 @@ const product = {
     });
   },
 
+  home: (req, res) => {
+    Product.find(
+      { category: req.query.category },
+      "title imagexs price category"
+    )
+      .limit(4)
+      .exec((err, products) => {
+        if (err) {
+          res.status(500).json({
+            message: "not good",
+          });
+        } else {
+          res.json(products);
+        }
+      });
+  },
+
   detail: (req, res) => {
     Product.findOne({ _id: req.query.id }, (err, product) => {
       if (err) {
@@ -36,6 +53,7 @@ const product = {
       }
     });
   },
+
   search: (req, res) => {
     const searchterms = req.query.search.split(" ");
     const filter = {
