@@ -61,14 +61,14 @@ const product = {
         {
           title: {
             $in: searchterms.map(
-              (element) => new RegExp("." + element + ".", "i")
+              (element) => new RegExp(".*" + element + ".*", "i")
             ),
           },
         },
         {
           category: {
             $in: searchterms.map(
-              (element) => new RegExp("." + element + ".", "i")
+              (element) => new RegExp(".*" + element + ".*", "i")
             ),
           },
         },
