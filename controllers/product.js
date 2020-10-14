@@ -8,8 +8,8 @@ const product ={
             if (err){ 
                 res.status(500).json({
                     message: "not good"
-                })
-                }else{
+                    })
+            }else{
                     res.json(product)
                 }
         })
