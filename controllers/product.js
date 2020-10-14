@@ -2,7 +2,7 @@ const Product = require("../models/Product");
 
 const product = {
   content: (req, res) => {
-    Product.find({}, "title imagexs price", (err, products) => {
+    Product.find({}, "title imagexs price category", (err, products) => {
       if (err) {
         res.status(500).json({
           message: "not good",
