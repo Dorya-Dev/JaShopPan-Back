@@ -7,6 +7,7 @@ const cors = require("./middleware/cors");
 const indexRouter = require("./routes/index");
 const accountRouter = require("./routes/account");
 const productRouter = require("./routes/product");
+const adminRouter = require("./routes/admin");
 
 const app = express();
 
@@ -30,5 +31,6 @@ app.use(cors.handle);
 app.use("/", indexRouter);
 app.use("/account", accountRouter);
 app.use("/product", productRouter);
+app.use("/admin", adminRouter);
 
 module.exports = app;
