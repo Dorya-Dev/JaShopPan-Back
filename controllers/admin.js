@@ -36,7 +36,7 @@ const admin = {
 
   deleteProduct: (req, res) => {
     Admin.deleteOne(
-      { _id: req.body._id },
+      { _id: req.query._id },
 
       (err, products) => {
         if (err) {
