@@ -21,7 +21,22 @@ const user = {
         });
       } else {
         res.json({
-          message: "compte crée ",
+          message: "compte créé ",
+        });
+      }
+    });
+  },
+  login: (req, res) => {
+    User.findOne({ email: req.body.email }, (err, user) => {
+      if (err) {
+        res.status(500).json({
+          message: "not good",
+        });
+      } else if (user) {
+        res.json({ message: " connexion effectuée" });
+      } else {
+        res.status(401).json({
+          message: "compte non trouvé",
         });
       }
     });
