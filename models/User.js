@@ -15,9 +15,9 @@ const contactSchema = new mongoose.Schema({
   birthday: String,
   password: String,
   address: String,
-  postcode: Number,
+  postcode: String,
   city: String,
-  phone: Number,
+  phone: String,
 });
 
 module.exports = mongoose.model("User", contactSchema);
