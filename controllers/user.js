@@ -20,7 +20,7 @@ const user = {
         });
       } else {
         res.json({
-          message: "compte crée ",
+          message: "compte créé",
         });
       }
     });
