@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const user = {
   create: (req, res) => {
@@ -21,8 +22,26 @@ const user = {
         });
       } else {
         res.json({
-          message: "compte crée ",
+          message: "compte créé ",
         });
+      }
+    });
+  },
+  login: (req, res) => {
+    User.findOne({ email: req.body.email }, (err, user) => {
+      if (err) {
+        res.status(500).json({
+          message: "not good",
+        });
+      } else if (user) {
+        if (bcrypt.compareSync(req.body.password, user.password)) {
+          const token = jwt.sign({ id: user._id }, "dev");
+          res.json({ message: "Connexion réussie", token });
+        } else {
+          res.status(401).json({ message: "Erreur" });
+        }
+      } else {
+        res.status(401).json({ message: "Erreur" });
       }
     });
   },

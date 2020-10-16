@@ -5,7 +5,7 @@ const user = require("../controllers/user");
 /* GET home page. */
 router.post("/create", user.create);
 
-/*router.post("/login", user.login);
+router.post("/login", user.login);
 
 /*router.put('/profile', user.title);
 
