@@ -22,13 +22,15 @@ const admin = {
         price: req.body.price,
       },
 
-      (err, products) => {
+      (err) => {
         if (err) {
           res.status(500).json({
             message: "not good",
           });
         } else {
-          res.json(products);
+          res.json({
+            message: "produit ajouté",
+          });
         }
       }
     );
@@ -44,7 +46,9 @@ const admin = {
             message: "not good",
           });
         } else {
-          res.json("products deleted");
+          res.json({
+            message: "produit supprimé",
+          });
         }
       }
     );
