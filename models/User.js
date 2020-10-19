@@ -5,6 +5,13 @@
 
 const mongoose = require("mongoose");
 
+const productSchema = new mongoose.Schema({
+  productId: String,
+  quantity: Number,
+  name: String,
+  price: Number,
+});
+
 const contactSchema = new mongoose.Schema({
   firstname: String,
   lastname: String,
@@ -18,6 +25,7 @@ const contactSchema = new mongoose.Schema({
   postcode: String,
   city: String,
   phone: String,
+  cart: [productSchema],
 });
 
 module.exports = mongoose.model("User", contactSchema);

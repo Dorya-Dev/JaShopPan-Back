@@ -12,8 +12,8 @@ router.get("/profile", authentication, user.getProfileData);
 
 router.put("/profile", authentication, user.edit);
 
-/*router.get('/orders', user.title);
+router.get("/cart", authentication, user.getCart);
 
-router.post('/cart', user.title);*/
+router.post("/cart", authentication, user.addToCart);
 
 module.exports = router;

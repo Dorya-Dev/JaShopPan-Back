@@ -80,6 +80,38 @@ const user = {
       }
     });
   },
+  getCart: (req, res) => {
+    res.json(req.user.cart);
+  },
+
+  addToCart: (req, res) => {
+    req.user.cart.push({
+      productId: req.body.id,
+      quantity: req.body.quantity,
+      name: req.body.name,
+      price: req.body.price,
+    });
+
+    /*User.findOne({ productId: req.body.id }, (err, products) => {
+      if (err) {
+        res.status(500).json({
+          message: "not found",
+        });
+      } else {
+        res.json(products);
+      }
+    });*/
+
+    req.user.save((error) => {
+      if (error) {
+        res.status(500).json({
+          message: "Ajout erreur",
+        });
+      } else {
+        res.json({ message: "Produit ajouté" });
+      }
+    });
+  },
 };
-//
+
 module.exports = user;
