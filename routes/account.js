@@ -10,9 +10,9 @@ router.post("/login", user.login);
 
 router.get("/profile", authentication, user.getProfileData);
 
-/*router.put('/profile', user.title);
+router.put("/profile", authentication, user.edit);
 
-router.get('/orders', user.title);
+/*router.get('/orders', user.title);
 
 router.post('/cart', user.title);*/
 

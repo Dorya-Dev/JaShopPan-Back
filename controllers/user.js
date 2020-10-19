@@ -48,6 +48,38 @@ const user = {
   getProfileData: (req, res) => {
     res.json(req.user);
   },
+
+  edit: (req, res) => {
+    req.user.firstname = req.body.firstname
+      ? req.body.firstname
+      : req.user.firstname;
+    req.user.lastname = req.body.lastname
+      ? req.body.lastname
+      : req.user.lastname;
+    req.user.email = req.body.email ? req.body.email : req.user.email;
+    req.user.birthday = req.body.birthday
+      ? req.body.birthday
+      : req.user.birthday;
+    req.user.password = req.body.password
+      ? bcrypt.hashSync(req.body.password, 10)
+      : req.user.password;
+    req.user.address = req.body.address ? req.body.address : req.user.address;
+    req.user.postcode = req.body.postcode
+      ? req.body.postcode
+      : req.user.postcode;
+    req.user.city = req.body.city ? req.body.city : req.user.city;
+    req.user.phone = req.body.phone ? req.body.phone : req.user.phone;
+
+    req.user.save((error) => {
+      if (error) {
+        res.status(500).json({
+          message: "not good",
+        });
+      } else {
+        res.json({ message: "Utilisateur modifié" });
+      }
+    });
+  },
 };
 
 module.exports = user;
