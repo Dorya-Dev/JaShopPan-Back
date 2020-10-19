@@ -35,7 +35,7 @@ const user = {
         });
       } else if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
-          const token = jwt.sign({ id: user._id }, "dev");
+          const token = jwt.sign({ id: user._id }, "dev", { expiresIn: "24h" });
           res.json({ message: "Connexion réussie", token });
         } else {
           res.status(401).json({ message: "Erreur" });
@@ -44,6 +44,9 @@ const user = {
         res.status(401).json({ message: "Erreur" });
       }
     });
+  },
+  getProfileData: (req, res) => {
+    res.json(req.user);
   },
 };
 
