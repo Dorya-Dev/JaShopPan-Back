@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Product = require("../models/Product");
 
 const user = {
   create: (req, res) => {
@@ -18,7 +19,7 @@ const user = {
     newUser.save((error) => {
       if (error) {
         res.status(500).json({
-          message: "not good",
+          message: "Erreur",
         });
       } else {
         res.json({
@@ -31,7 +32,7 @@ const user = {
     User.findOne({ email: req.body.email }, (err, user) => {
       if (err) {
         res.status(500).json({
-          message: "not good",
+          message: "Erreur",
         });
       } else if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -73,7 +74,7 @@ const user = {
     req.user.save((error) => {
       if (error) {
         res.status(500).json({
-          message: "not good",
+          message: "Erreur",
         });
       } else {
         res.json({ message: "Utilisateur modifié" });
@@ -85,31 +86,27 @@ const user = {
   },
 
   addToCart: (req, res) => {
-    req.user.cart.push({
-      productId: req.body.id,
-      quantity: req.body.quantity,
-      name: req.body.name,
-      price: req.body.price,
-    });
-
-    /*User.findOne({ productId: req.body.id }, (err, products) => {
-      if (err) {
+    Product.findOne({ _id: req.body.id }, "title price", (error, product) => {
+      if (error || !product) {
         res.status(500).json({
-          message: "not found",
+          message: "Erreur",
         });
       } else {
-        res.json(products);
-      }
-    });*/
-
-    req.user.save((error) => {
-      if (error) {
-        res.status(500).json({
-          message: "Ajout erreur",
+        req.user.cart.push({
+          quantity: req.body.quantity,
+          name: product.title,
+          price: product.price,
         });
-      } else {
-        res.json({ message: "Produit ajouté" });
       }
+      req.user.save((error) => {
+        if (error) {
+          res.status(500).json({
+            message: "Erreur",
+          });
+        } else {
+          res.json({ message: "Produit ajouté" });
+        }
+      });
     });
   },
 };
