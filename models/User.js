@@ -10,6 +10,7 @@ const productSchema = new mongoose.Schema({
   quantity: Number,
   name: String,
   price: Number,
+  imagexs: String,
 });
 
 const contactSchema = new mongoose.Schema({

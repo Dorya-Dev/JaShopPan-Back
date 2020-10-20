@@ -86,29 +86,34 @@ const user = {
   },
 
   addToCart: (req, res) => {
-    Product.findOne({ _id: req.body.id }, "title price", (error, product) => {
-      if (error || !product) {
-        res.status(500).json({
-          message: "Erreur",
-        });
-      } else {
-        req.user.cart.push({
-          productId: req.body.id,
-          quantity: req.body.quantity,
-          name: product.title,
-          price: product.price,
-        });
-      }
-      req.user.save((error) => {
-        if (error) {
+    Product.findOne(
+      { _id: req.body.id },
+      "title price imagexs",
+      (error, product) => {
+        if (error || !product) {
           res.status(500).json({
             message: "Erreur",
           });
         } else {
-          res.json({ message: "Produit ajouté" });
+          req.user.cart.push({
+            productId: req.body.id,
+            quantity: req.body.quantity,
+            name: product.title,
+            price: product.price,
+            imagexs: product.imagexs,
+          });
         }
-      });
-    });
+        req.user.save((error) => {
+          if (error) {
+            res.status(500).json({
+              message: "Erreur",
+            });
+          } else {
+            res.json({ message: "Produit ajouté" });
+          }
+        });
+      }
+    );
   },
 };
 
