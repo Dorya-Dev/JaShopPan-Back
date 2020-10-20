@@ -93,6 +93,7 @@ const user = {
         });
       } else {
         req.user.cart.push({
+          productId: req.body.id,
           quantity: req.body.quantity,
           name: product.title,
           price: product.price,
