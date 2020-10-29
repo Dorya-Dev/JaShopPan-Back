@@ -115,6 +115,21 @@ const user = {
       }
     );
   },
+  deleteProduct: (req, res) => {
+    const deleteIndex = req.user.cart.findIndex(
+      (element) => element.productId === req.query.productId
+    );
+    req.user.cart.splice(deleteIndex, 1);
+    req.user.save((error) => {
+      if (error) {
+        res.status(500).json({
+          message: "Erreur",
+        });
+      } else {
+        res.json({ message: "Produit supprimer" });
+      }
+    });
+  },
 };
 
 module.exports = user;
